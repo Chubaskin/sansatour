@@ -1,17 +1,11 @@
 <?php
 
 //AQUI CONECTAMOS A LA BASE DE DATOS DE POSTGRES
-$conex = "host=localhost port=5432 dbname=tareadb user=mauricio password=1234";
+$conex = "host=localhost port=5432 dbname=TareaDB user=mauricio password=1234";
 $cnx = pg_connect($conex) or die ("<h1>Error de conexion.</h1> ". pg_last_error());
 
 session_start();
 
-function quitar($mensaje)
-{
- $nopermitidos = array("'",'\\','<','>',"\"");
- $mensaje = str_replace($nopermitidos, "", $mensaje);
- return $mensaje;
-}
 if(trim($_POST["nombre"]) != "" && trim($_POST["llave"]) != "")
 {
  // Puedes utilizar la funcion para eliminar algun caracter en especifico
@@ -19,11 +13,11 @@ if(trim($_POST["nombre"]) != "" && trim($_POST["llave"]) != "")
  //$password = $HTTP_POST_VARS["password"];
  // o puedes convertir los a su entidad HTML aplicable con htmlentities
  $usuario = strtolower(htmlentities($_POST["nombre"], ENT_QUOTES));
- $password = $_POST["clave"];
- $sqlquery = 'SELECT usuario, clave FROM tbpass WHERE usuario=\''.$usuario.'\'';
+ $password = $_POST["llave"];
+ $sqlquery = 'SELECT "usuario", "clave" FROM "Tarea Buses".dbpass WHERE usuario=\''.$usuario.'\'';
  $result = pg_query($sqlquery);
  if($row = pg_fetch_array($result)){
-  if($row["password"] == $password){
+  if($row["clave"] == $password){
    $_SESSION["k_username"] = $row['usuario'];
    echo 'Has sido logueado correctamente '.$_SESSION['k_username'].' <p>';
    echo '<a href="index.php">Index</a></p>';
