@@ -1,14 +1,5 @@
-<html>
-<head>
-<title>Sansa Tour</title>
-</head>
-
-<body>
-<img alt="Bus"
-    style=" margin:10px auto;
-	display:block;"
-    src="./imagenes/bus-lane-160716_1280.png" 
-    width="100" height="100"/>
+<?php include 'plantillas/header.php'; ?>
+<?php session_start(); ?>
 
 <form action="validar.php" method="post">
     <p style="text-align: center;">Usuario: 
@@ -25,5 +16,5 @@
 <h6 style="text-align: center;"><a href="./Index.php">Volver</a><br/></h6>
 </form>
 
-</body>
-</html>
+
+<?php include 'plantillas/footer.php'; ?>
